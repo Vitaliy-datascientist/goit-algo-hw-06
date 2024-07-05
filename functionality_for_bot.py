@@ -74,11 +74,10 @@ class Record:
         :param phone: Бажаний номер телефону.
         :return: Об'єкт номера телефону(Phone) за вказаним номером(phone).
         """
-        try:
-            i = [v.value for v in self.phones].index(Phone(phone).value)
-            return self.phones[i]
-        except ValueError:
+        res = [p for p in self.phones if p.value == Phone(phone).value]
+        if not res:
             return None
+        return res
 
     def __str__(self):
         return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"

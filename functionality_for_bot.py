@@ -5,7 +5,7 @@ from collections import UserDict
 
 class ValidationError(Exception):
     def __init__(self):
-        super().__init__('The phone must have 10 symbols.')
+        super().__init__('The phone must have 10 numbers.')
 
 
 class Field:
@@ -27,7 +27,8 @@ class Phone(Field):
     """Клас для зберігання номера телефону. Має валідацію формату (10 цифр)."""
 
     def __init__(self, value: str):
-        if len(value) == 10:
+        numbers = [num for num in value if num.isdigit()]
+        if len(numbers) == 10:
             super().__init__(value)
         else:
             raise ValidationError
@@ -67,7 +68,7 @@ class Record:
         i = [v.value for v in self.phones].index(Phone(old_phone).value)
         self.phones[i] = Phone(new_phone)
 
-    def find_phone(self, phone: str):
+    def find_phone(self, phone: str) -> Phone | None:
         """
         Пошук телефону.
 
@@ -77,7 +78,7 @@ class Record:
         res = [p for p in self.phones if p.value == Phone(phone).value]
         if not res:
             return None
-        return res
+        return res[0]
 
     def __str__(self):
         return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
@@ -94,7 +95,7 @@ class AddressBook(UserDict):
         """
         self.data[record.name.value] = record
 
-    def find(self, name: str):
+    def find(self, name: str) -> Record:
         """
         Пошук записів за іменем.
 

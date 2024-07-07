@@ -27,8 +27,7 @@ class Phone(Field):
     """Клас для зберігання номера телефону. Має валідацію формату (10 цифр)."""
 
     def __init__(self, value: str):
-        numbers = [num for num in value if num.isdigit()]
-        if len(numbers) == 10:
+        if value.isdigit() and len(value) == 10:
             super().__init__(value)
         else:
             raise ValidationError

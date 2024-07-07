@@ -36,9 +36,9 @@ class Phone(Field):
 class Record:
     """Клас для зберігання інформації про контакт, включаючи ім'я та список телефонів."""
 
-    def __init__(self, name: str, phones: list[str, ...] = None):
+    def __init__(self, name: str, *phones: str):
         self.name = Name(name)
-        self.phones = [Phone(phone) for phone in phones] if phones else []
+        self.phones = [Phone(phone) for phone in phones]
 
     def add_phone(self, phone: str):
         """

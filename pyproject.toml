@@ -2,7 +2,7 @@
 name = "goit-algo-hw-06"
 version = "0.1.0"
 description = ""
-authors = ["Vitaliy-datascientist <vitaliy.dayneko2410@gmail.com>"]
+authors = ["data-tamer2410 <vitaliy.dayneko2410@gmail.com>"]
 packages = [{'include' = 'functionality_for_bot'}]
 
 [tool.poetry.dependencies]
